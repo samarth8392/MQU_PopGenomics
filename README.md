@@ -31,7 +31,7 @@ This repository contains the following scripts within each folder
 	- Create mulitple sequence alignment and phylogenetic trees using clustalW
 
 #### Pop_Gen
-***Scripts containing population genomic metric estimations using ANGSD***
+***Scripts for population genomic metric estimations using ANGSD***
 
 - genotype_likelihoods.sh
 	- Estimate genotype likelihoods from populations
@@ -59,3 +59,15 @@ This repository contains the following scripts within each folder
 
 - genic_fst.sh
 	- Estimate global and sliding-window F*st* between populations from SFS for genic regions
+
+- pbs.sh
+	- Estimate population branch statistics (PBS) for the whole genome and genic regions 
+
+#### Denomgraphy
+***Scripts for demographic history analyses***
+
+- mu_rate.sh
+	- Estimate the whole-genomic mutation rate (μ) for effective population size (Ne) and for demographic reconstruction
+
+- smc.sh
+	- Reconstructing historic population demography by running sequential Markov coalescent simulations (SMCs) in SMC++.
