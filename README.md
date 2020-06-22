@@ -52,4 +52,4 @@ This repository contains the following scripts within each folder
 	- Estimate nucleotide diversity (theta) and calculate Tajima's D and various other neutrality test statistics
 
 - fst.sh
-	- Estimate global and sliding-window F*ST* between populations using 
+	- Estimate global and sliding-window F*st* between populations using 
