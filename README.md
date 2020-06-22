@@ -17,3 +17,13 @@ Aligning reads to a reference assembly, sorting, marking dupicates, realinging a
 
 ##### genic_alignment.sh 
 Extracting genic reads and mapping it to MQU genic regions (as annotated in Mathur et al. 2019)
+
+### Mitogenome
+#### Scripts for assembling individual mitogenomes and getting phylogenetic trees
+
+##### Mitogenome_alignment.sh 
+Identify NUMTs, remove NUMT reads, and map mitogenome reads to reference mitochondrial genome
+
+##### Mito_haplotypes.sh 
+Identify SNPs, filter SNPs, and create concensus mitogenome haplotypes for each individual
+
