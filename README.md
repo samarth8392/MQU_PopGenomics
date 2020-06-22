@@ -71,3 +71,15 @@ This repository contains the following scripts within each folder
 
 - smc.sh
 	- Reconstructing historic population demography by running sequential Markov coalescent simulations (SMCs) in SMC++.
+
+#### Genetic Load
+***Scripts for calling genotypes, functionally annotating genic SNPs, and calculating their population frequencies***
+
+- genotype_calling.sh
+	- To call SNP genotypes from whole genome data
+
+- SNPeff.sh
+	- To functionally annotate SNPs as high, moderate, low, and no-impact variants
+
+- genetic_load.sh
+	- Filter annotated SNPs and estimate minor allele frequency (MAF) for all impact class variants
