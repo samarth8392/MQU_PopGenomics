@@ -19,11 +19,29 @@ This repository contains the following scripts within each folder
 	- Extracting genic reads and mapping it to MQU genic regions (as annotated in Mathur et al. 2019)
 
 #### Mitogenome
-Scripts for assembling individual mitogenomes and getting phylogenetic trees
+***Scripts for assembling individual mitogenomes and getting phylogenetic trees***
 
 - Mitogenome_alignment.sh 
 	- Identify NUMTs, remove NUMT reads, and map mitogenome reads to reference mitochondrial genome
 
 - Mito_haplotypes.sh 
 	- Identify SNPs, filter SNPs, and create concensus mitogenome haplotypes for each individual
+
+- mtDNA_tree.sh
+	- Create mulitple sequence alignment and phylogenetic trees using clustalW
+
+#### Pop_Gen
+***Scripts containing population genomic metric estimations using ANGSD***
+
+- genotype_likelihoods.sh
+	- Estimate genotype likelihoods from populations
+
+- relatedness.sh
+	-	Estimating relatedness between a pair of individuals
+
+- inbreeding_pca.sh
+	- Estimating per-site inbreeding coefficients (F) and performing PCA on all individuals
+
+- admxiture.sh
+	- To estimate admixture proportions for different number of ancestral populations (K)
 
