@@ -49,7 +49,13 @@ This repository contains the following scripts within each folder
 	- Estimate the site frequency spectrum (sfs) and bootstrap it
 
 - theta.sh
-	- Estimate nucleotide diversity (theta) and calculate Tajima's D and various other neutrality test statistics
+	- Estimate nucleotide diversity (theta) and calculate Tajima's D and various other neutrality test statistics for whole genome
 
 - fst.sh
-	- Estimate global and sliding-window F*st* between populations using 
+	- Estimate global and sliding-window F*st* between populations from SFS
+
+- genic_theta.sh
+	- Estimate nucleotide diversity (theta) and calculate Tajima's D and various other neutrality test statistics for genic regions
+
+- genic_fst.sh
+	- Estimate global and sliding-window F*st* between populations from SFS for genic regions
