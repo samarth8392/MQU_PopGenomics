@@ -10,7 +10,7 @@ Authorea. May 14, 2020.DOI: 10.22541/au.158941448.85174067
 This repository contains the following scripts within each folder
 
 #### Map_ReadProcess
-*Scripts for aligning MQU reads to a reference genome and processing reads according to GATK Best Practices*
+***Scripts for aligning MQU reads to a reference genome and processing reads according to GATK Best Practices***
 
 - alignment.sh 
 	- Aligning reads to a reference assembly, sorting, marking dupicates, realinging around indels, and base quality score recalibration
