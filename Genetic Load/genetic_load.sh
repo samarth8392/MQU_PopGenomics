@@ -85,7 +85,7 @@ grep "MODIFIER" az_genic_good_snps.vcf | sed -e '1d' | cut -f1,2 > az_nc_sites.t
 grep "MODIFIER" tx_genic_good_snps.vcf | sed -e '1d' | cut -f1,2 > tx_nc_sites.txt
 grep "MODIFIER" nm_genic_good_snps.vcf | sed -e '1d' | cut -f1,2 > nm_nc_sites.txt
 
-
+# Population Allele frequncies #
 # Get frequency
 
 for i in high low mod nc
@@ -126,3 +126,29 @@ do
 	sed -e '1d' /scratch/snyder/m/mathur20/MQU/2020/angsd/snps/heter/mqu/nm/r2/nm_${i}_freq.frq | cut -f6 \
 	> /scratch/snyder/m/mathur20/MQU/2020/angsd/snps/heter/mqu/nm/r2/nm_${i}_minor.freq
 done
+
+## FOR ESTIMATING GENETIC LOAD FOR EACH INDIIVUDAL ##
+# To get the allele counts from the genotypes #
+# 0/0 = 0 allele ; 0/1 = 1 allele; 1/1/ = 2 alleles
+for i in 1 2 3 4 5 6 7
+do
+	cut -f${i} az_genic_high.geno | cut -f1 -d ':' > ind_geno/az_ind${i}_high.geno
+	cut -f${i} tx_genic_high.geno | cut -f1 -d ':' > ind_geno/tx_ind${i}_high.geno
+	cut -f${i} nm_genic_high.geno | cut -f1 -d ':' > ind_geno/nm_ind${i}_high.geno
+
+	cut -f${i} az_genic_moderate.geno | cut -f1 -d ':' > ind_geno/az_ind${i}_moderate.geno
+	cut -f${i} tx_genic_moderate.geno | cut -f1 -d ':' > ind_geno/tx_ind${i}_moderate.geno
+	cut -f${i} nm_genic_moderate.geno | cut -f1 -d ':' > ind_geno/nm_ind${i}_moderate.geno
+
+	cut -f${i} az_genic_low.geno | cut -f1 -d ':' > ind_geno/az_ind${i}_low.geno
+	cut -f${i} tx_genic_low.geno | cut -f1 -d ':' > ind_geno/tx_ind${i}_low.geno
+	cut -f${i} nm_genic_low.geno | cut -f1 -d ':' > ind_geno/nm_ind${i}_low.geno
+
+	cut -f${i} az_genic_modifier.geno | cut -f1 -d ':' > ind_geno/az_ind${i}_modifier.geno
+	cut -f${i} tx_genic_modifier.geno | cut -f1 -d ':' > ind_geno/tx_ind${i}_modifier.geno
+	cut -f${i} nm_genic_modifier.geno | cut -f1 -d ':' > ind_geno/nm_ind${i}_modifier.geno
+done
+
+pr -mts' ' az_*_high.geno > az_high_allind_allele
+pr -mts' ' tx_*_high.geno > az_high_allind_allele
+pr -mts' ' nm_*_high.geno > az_high_allind_allele
