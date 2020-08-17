@@ -29,17 +29,21 @@ module load BBMap/37.93
 bwa index /scratch/snyder/m/mathur20/MQU/2020/adapt/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta
 samtools faidx /scratch/snyder/m/mathur20/MQU/2020/adapt/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta
 
-# Extract genic reads using bbmap #
+# GFF TO BED using bedops#
+
+awk '{gsub(/;$/,"");print}' genome.all.gff > revisedgenome.all.gff 
+cat revisedgenome.all.gff | awk '$3 =="gene" {print $0}' > revisedgenome.all_justgenes.gff 
+gff2bed < revisedgenome.all_justgenes.gff > revisedgenome.all_justgenes.bed 
+
+
+# Extract genic BAM using samtools view #
 while read -a line
-do 
-	bbsplit.sh -Xmx200g \
-	minratio=0.85 minhits=2 \
-	ref=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta \
-	in=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/reads/${line[0]}_R1_filtered.fastq \
-	in2=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/reads/${line[0]}_R2_filtered.fastq \
-	out=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/reads/${line[0]}_genic.fastq \
-	scafstats=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/stats/${line[0]}_bbstats.txt
-done < /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/sample.list
+do
+	samtools view -L /scratch/snyder/m/mathur20/MQU/ch2_redo/genic/align/revisedgenome.all_justgenes.bed \
+	-o /scratch/snyder/m/mathur20/MQU/ch2_redo/genic/align_nomerge/bam/${line[0]}_genic.nomerge.bam \
+	/scratch/snyder/m/mathur20/MQU/ch2_redo/align_nomerge/final/${line[0]}.mqu.recal.final.bam
+done < /scratch/snyder/m/mathur20/MQU/ch2_redo/lists/all.list
+
 
 #Aligning genic reads to MQU genes (Mathur et al. 2019) #
 
@@ -56,31 +60,4 @@ do
 	PicardCommandLine BuildBamIndex INPUT=dedup_${line[0]}_MQU_genic.bam
 done < /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/sample.list
 
-PicardCommandLine CreateSequenceDictionary \
-reference=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta \
-output=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.dict
-
-while read -a line
-do
-	GenomeAnalysisTK -nt 80 -T RealignerTargetCreator \
-	-R /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta \
-	-I /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/bam/dedup_${line[0]}_MQU_genic.bam \
-	-o /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/forIndelRealigner.${line[0]}.intervals
-
-	GenomeAnalysisTK -T IndelRealigner \
-	-R /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/MQU_male_k60_SE-abyss_min5000.all.maker.transcripts.fasta \
-	-I /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/bam/dedup_${line[0]}_MQU_genic.bam \
-	-targetIntervals /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/forIndelRealigner.${line[0]}.intervals \
-	-o /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/realigned_${line[0]}_reads.bam \
-	&> /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/log/indelrealign.${line[0]}.logfile.txt
-done < /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/sample.list
-
-while read -a line
-do
-	PicardCommandLine FixMateInformation \
-	INPUT=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/realigned_${line[0]}_reads.bam \
-	OUTPUT=/scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/genic/gatk/final/${line[0]}.sorted.dedup.realigned.fixmate.bam \
-	SO=coordinate \
-	CREATE_INDEX=true
-done < /scratch/snyder/m/mathur20/MQU/2019/try_final_angsd/align/sample.list
 
