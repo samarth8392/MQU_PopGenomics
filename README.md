@@ -60,8 +60,8 @@ This repository contains the following scripts within each folder
 - genic_fst.sh
 	- Estimate global and sliding-window F*st* between populations from SFS for genic regions
 
-- pbs.sh
-	- Estimate population branch statistics (PBS) for the whole genome and genic regions 
+- heterozygosity.sh
+	- Estimate observed heterozygosity for each individual from SFS
 
 #### Denomgraphy
 ***Scripts for demographic history analyses***
