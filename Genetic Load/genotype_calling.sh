@@ -26,25 +26,25 @@ module load vcftools
 
 /scratch/snyder/m/mathur20/MQU/2019/softwares/angsd/angsd -P 80 \
 -doBcf 1 -GL 1 -doCounts 1 -nInd 7 -doHWE 1 -doPost 1 -doMajorMinor 1 -doMaf 3 \
---ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 50 \
+--ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 20 \
 -skipTriallelic 1 -minMaf 0.05 -minHWEpval 0.01 \
--setMinDepthInd 5 -minInd 1 \
+-setMinDepthInd 5 -minInd 5 \
 -bam /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/az_s1_mqu.list \
 -out /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/az_s1
 
 /scratch/snyder/m/mathur20/MQU/2019/softwares/angsd/angsd -P 80 \
 -doBcf 1 -GL 1 -doCounts 1 -nInd 7 -doHWE 1 -doPost 1 -doMajorMinor 1 -doMaf 3 \
---ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 50 \
+--ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 20 \
 -skipTriallelic 1 -minMaf 0.05 -minHWEpval 0.01 \
--setMinDepthInd 5 -minInd 1 \
+-setMinDepthInd 5 -minInd 5 \
 -bam /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/az_s1_mqu.list \
 -out /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/tx_s1
 
 /scratch/snyder/m/mathur20/MQU/2019/softwares/angsd/angsd -P 80 \
 -doBcf 1 -GL 1 -doCounts 1 -nInd 7 -doHWE 1 -doPost 1 -doMajorMinor 1 -doMaf 3 \
---ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 50 \
+--ignore-RG 0 -dogeno 1 -geno_minDepth 5 -minMapQ 20 \
 -skipTriallelic 1 -minMaf 0.05 -minHWEpval 0.01 \
--setMinDepthInd 5 -minInd 1 \
+-setMinDepthInd 5 -minInd 5 \
 -bam /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/az_s1_mqu.list \
 -out /scratch/snyder/m/mathur20/MQU/2020/angsd/subsample/s1/nm_s1
 
