@@ -4,6 +4,7 @@
 This repository contains scripts for the publication:
 
 Samarth Mathur, J. Andrew DeWoody. Genetic load has potential in large populations but is realized in small inbred populations. _Evolutionary Applications_. (in press)
+https://doi.org/10.1111/eva.13216
 
 ### Folders
 This repository contains the following scripts within each folder
